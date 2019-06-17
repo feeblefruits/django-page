@@ -1,1 +1,1 @@
-web: gunicorn howdy.wsgi --log-file -
+web: gunicorn howdy.wsgi
