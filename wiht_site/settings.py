@@ -25,7 +25,7 @@ SECRET_KEY = 'i$-cbmu3t6k+hob(^1ahkg4qwd+f=v09-6n_56nj!g9)7yw3jo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['powerful-river-58359.herokuapp.com']
+ALLOWED_HOSTS = ['https://powerful-river-58359.herokuapp.com']
 
 
 # Application definition
