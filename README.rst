@@ -1,6 +1,8 @@
 Howdy
 =========================
 
+https://powerful-river-58359.herokuapp.com/
+
 Application setup
 -----------------
 To get started::
