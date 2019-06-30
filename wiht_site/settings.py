@@ -26,6 +26,7 @@ SECRET_KEY = 'i$-cbmu3t6k+hob(^1ahkg4qwd+f=v09-6n_56nj!g9)7yw3jo'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+        '0.0.0.0',
         '127.0.0.1',
         'https://powerful-river-58359.herokuapp.com',
         'powerful-river-58359.herokuapp.com'
