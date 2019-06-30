@@ -5,33 +5,9 @@
     <head>
         <meta charset="utf-8">
         <title>Howdy!</title>
-        <style>
-        	body{
-        		background-color: rgb(119, 27, 255);
-        		margin: 0 auto;
-        	}
-        	h1{
-        		text-align: center;
-        		margin: 0;
-        		text-transform: uppercase;
-        		color: #fff;
-        	}
-        	ul{
-        		margin: 0;
-        		padding: 0;
-        		float: right;
-        	}
-        	li{
-        		margin: 5px;
-        		padding: 5px 10px;
-        		display: inline-block;
-        	}
-        	a{
-        		color: #fff;
-        	}
-        </style>
+        <link href="{% static 'howdy/css/base.css' %}" rel="stylesheet" media="all">
     </head>
-    <body>
+    <body> {%block content%}
         <h1>Howdy! I am Learning Django!</h1>
      <ul>
      	<li>
@@ -41,5 +17,5 @@
      		<a href="/contact/">Contact</a>
      	</li>
      </ul>
-    </body>
+    {%end block%} </body>
 </html>
