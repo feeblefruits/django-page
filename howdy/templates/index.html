@@ -1,21 +1,22 @@
 <!-- howdy/templates/index.html -->
-
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Howdy!</title>
-        <link href="{% static 'howdy/base.css' %}" rel="stylesheet" media="all">
-    </head>
-    <body> {%block content%}
-        <h1>Howdy! I am Learning Django!</h1>
-     <ul>
-     	<li>
-     		<a href="/about/">About</a>
-     	</li>
-     	<li>
-     		<a href="/contact/">Contact</a>
-     	</li>
-     </ul>
-    {%end block%} </body>
+  <head>
+      <meta charset="utf-8">
+      <title>Howdy!</title>
+      <link href="{% static 'howdy/css/base.css' %}" rel="stylesheet" media="all">
+  </head>
+  <body> {%block content%}
+      <h1>Howdy! I am Learning Django!</h1>
+   <ul>
+   	<li>
+   		<a href="/about/">About</a>
+   	</li>
+   	<li>
+   		<a href="/contact/">Contact</a>
+   	</li>
+   </ul>
+  {% endblock %}
+  </body>
 </html>

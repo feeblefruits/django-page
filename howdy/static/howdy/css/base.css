@@ -1,24 +1,27 @@
-
-body{
+body {
 	background-color: rgb(119, 27, 255);
 	margin: 0 auto;
 }
-h1{
+
+h1 {
 	text-align: center;
 	margin: 0;
 	text-transform: uppercase;
 	color: #fff;
 }
-ul{
+
+ul {
 	margin: 0;
 	padding: 0;
 	float: right;
 }
-li{
+
+li {
 	margin: 5px;
 	padding: 5px 10px;
 	display: inline-block;
 }
-a{
+
+a {
 	color: #fff;
 }
