@@ -18,3 +18,11 @@ body {
   box-shadow: 0 16px 48px #E3E7EB;
   padding-top: 10px;
 }
+
+.card{
+ box-shadow: 0 16px 48px #E3E7EB;
+}
+
+.head_text {
+  color: white;
+}
