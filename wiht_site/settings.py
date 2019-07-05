@@ -61,7 +61,7 @@ ROOT_URLCONF = 'wiht_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['howdy/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
