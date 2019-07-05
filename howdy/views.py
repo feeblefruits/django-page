@@ -1,17 +1,15 @@
-from django.shortcuts import render
-from django.views.generic import TemplateView
 from django.views import generic
 from .models import Post
 
 # Create your views here.
 
-class HomePageView(TemplateView):
+class HomePageView(generic.TemplateView):
 	template_name = 'index.html'
 
-class AboutPageView(TemplateView):
+class AboutPageView(generic.TemplateView):
 	template_name = 'about.html'
 
-class ContactPageView(TemplateView):
+class ContactPageView(generic.TemplateView):
 	template_name = 'contact.html'
 
 class PostList(generic.ListView):
