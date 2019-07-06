@@ -1,8 +1,30 @@
 <!-- howdy/templates/about.html -->
 {% extends "index.html" %}
   {% block content %}
-    <h1>This is how you can reach us</h1>
-    <p><b>Email:</b> j.coetzee0@gmail.com</p>
-    <p><b>Cell:</b> (+27)768724658</p>
+  <header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white">This is how you can reach us</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+  </header>
+  <br/>
+  <div class="container">
+  <hr/>
+    <div class="row">
+      <dl>
+        <dt>Email:</dt>
+        <dd>j.coetzee0@gmail.com</dd>
+
+        <dt>Cell:</dt>
+        <dd>(+27)768724658</dd>
+      </dl>
+    </div>
     <a href="/">Go back home</a>
+  </div>
   {% endblock %}
