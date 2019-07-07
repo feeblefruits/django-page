@@ -1,28 +1,198 @@
-<!-- howdy/templates/about.html -->
-{% extends "index.html" %}
-  {% block content %}
-  <div class="container">
-  <hr/>
-    <div class="row">
-      <div id="chartContainer">
-        <script src="http://d3js.org/d3.v4.min.js"></script>
-        <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
-        <script type="text/javascript">
+<html>
+<head>
+  <!-- Props to Kimerly Geswein for her font Shadows Into Light */ -->
+  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.js"></script>
+  <script src="https://rawgit.com/pshihn/rough/master/dist/rough-async.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/granim/2.0.0/granim.js"></script>
+  <style>
+    .line {
+      fill: none;
+    }
+    .box,.line {
+      stroke: black;
+      stroke-width: 2px;
+      stroke-linecap: round;
+      stroke-linejoin: round;a
+    }
+    .writing {
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 24px;
+      font-weight: 700;
+    }
+    .text {
+      padding-right: 380;
+      padding-left: 380;
+    }
+    .pie_chart {
+      padding-top: 50;
+      padding-bottom: 50;
+    }
+    .heading {
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .subhead {
+      font-family: 'Shadows Into Light', cursive;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .img { 
+      width: 100%;
+      padding-top: 100;
+    }
+    .hatch-1 {
+      fill: url(#down-hatch);
+    }
+    .hatch-2 {
+      fill: url(#up-hatch);
+    }
+    .hatch-3 {
+      fill: url(#cross-hatch);
+    }
+    .text-highlight {
+    font-style: normal;
+    border-radius: 5em 0 2em 0;
+    background-image: 
+      linear-gradient(-100deg, 
+        rgba(245, 229, 27, 0.2),
+        rgba(245, 229, 27, 1) 100%, 
+        rgba(245, 229, 27, 0.8)
+    );
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <h2 class='heading'>Sketch and draw style</h2>
+    <p class='subhead'>By Jacques Coetzee</p>
+    <div class='text'>
+      <p>Sketch-style user interface is a great way to explore beautiful stories which cover topics not too serious. It compliments subjects that are both<span class='text-highlight'> whimsical and complex</span>. Visual design specialist Nadieh Bremer's brilliant <a href='https://whydocatsanddogs.com/'>“Why Do Cats & Dogs ...?”</a> does the hand-drawn look real justice. The piece's components takes inspiration from the likes of <a href='https://twitter.com/elijah_meeks'>Elijah Meeks</a> who's behind the <a href='https://roughjs.com/'>rough.js</a> library.
 
-          var svg = dimple.newSvg("#chartContainer", 590, 400);
-          d3.tsv("https://raw.githubusercontent.com/PMSI-AlignAlytics/dimple/master/data/example_data.tsv", function (data) {
-            var myChart = new dimple.chart(svg, data);
-            myChart.setBounds(60, 30, 510, 305)
-            var x = myChart.addCategoryAxis("x", "Month");
-            x.addOrderRule("Date");
-            myChart.addMeasureAxis("y", "Unit Sales");
-            myChart.addSeries(null, dimple.plot.bar);
-            myChart.draw();
+      <p>In this post I'll explore some of these styles. Let's take a look at this graphic below which is from <a href='http://dimplejs.org/'>dimple.js</a>.</p></div>
+
+    <div id="chartContainer">
+      <svg height="0" width="0">
+        <defs>
+          <pattern id="down-hatch" width="20" height="20" patternUnits="userSpaceOnUse">
+            <line x1="0" x2="20" y1="0" y2="20" class="line"/>
+            <line x1="-2" x2="2" y1="18" y2="22" class="line"/>
+            <line x1="18" x2="22" y1="-2" y2="2" class="line"/>
+          </pattern>
+          <pattern id="up-hatch" width="20" height="20" patternUnits="userSpaceOnUse">
+            <line x1="0" x2="20" y1="20" y2="0" class="line"/>
+            <line x1="-2" x2="2" y1="2" y2="-2" class="line"/>
+            <line x1="18" x2="22" y1="22" y2="18" class="line"/>
+          </pattern>
+          <pattern id="cross-hatch" width="14" height="20" patternUnits="userSpaceOnUse">
+            <line x1="2" x2="2" y1="0" y2="20" class="line"/>
+          </pattern>
+        </defs>
+      </svg>
+      <script type="text/javascript">
+        var svg = dimple.newSvg("#chartContainer", 1000, 500);
+          d3.csv("https://raw.githubusercontent.com/feeblefruits/Pokemon/master/poke_challenge-master/pokemon.csv", function (data) {
+          var myChart = new dimple.chart(svg, data);
+          myChart.setMargins(160, 100, 100, 160);
+          myChart.noFormats = true;
+          var x = myChart.addCategoryAxis("x", "type1");
+          var y = myChart.addMeasureAxis("y", "base_happiness");
+          y.showGridlines = false;
+          var mySeries = myChart.addSeries("type1", dimple.plot.bar);
+          myChart.customClassList = {
+            axisLine: 'line',
+            barSeries: 'box',
+            axisLabel: 'writing',
+            axisTitle: 'writing',
+            colorClasses: [
+              'hatch-1',
+              'hatch-2',
+              'hatch-3'
+            ]
+          };
+
+          // Override the standard tooltip behaviour
+          mySeries.addEventHandler("mouseover", function (e){
+            var labelX = parseFloat(e.selectedShape.attr("x")) + parseFloat(e.selectedShape.attr("width") / 2),
+                    labelY = parseFloat(e.selectedShape.attr("y")) - 70;
+            // Draw the text information in the top left corner
+            svg.append("text")
+                    .attr("class", "tooltip writing")
+                    .attr("x", labelX)
+                    .attr("y", labelY)
+                    .style("pointer-events", "none")
+                    .style("text-anchor", "middle")
+                    .text(e.xValue + " (" + d3.format(",.0f")(e.yValue) + ")");
+            svg.append("path")
+                    .attr("class", "tooltip line")
+                    .attr("transform", "translate(" + labelX + "," + labelY + ")")
+                    .attr("d", "M 2 5 L 0 65 L -5 55 L 8 56 L 3 62")
           });
-        </script>
-      </div>
+
+          // Clear the text on exit
+          mySeries.addEventHandler("mouseleave", function (e) {
+            svg.selectAll(".tooltip").remove();
+          });
+
+          myChart.draw();
+        });
+      </script>
     </div>
-    <br/>
-    <a href="/">Go back home</a>
-  </div>
-{% endblock %}
+    <div class='text'>The above bar chart is a slightly modified version of the Dimple.js examples which refers to <a href='https://github.com/feeblefruits/Pokemon/blob/master/poke_challenge-master/pokemon.csv'> Pokemon data </a>. It shows the total happiness for all Pokemon by their primary type.
+      <p>Now, using rough.js we can really go crazy. This pie chart is the same data as the bar chart:
+    </div>
+    <div class='pie_chart'>
+      <canvas width="960" height="500"></canvas>
+      <script>
+      var canvas = document.querySelector("canvas"),
+          context = canvas.getContext("2d");
+      const rc = rough.canvas(canvas, { options: { fill: "blue", fillStyle: 'zigzag', roughness: 2 ,bowing: 0.0 } });
+      var width = canvas.width,
+          height = canvas.height,
+          radius = Math.min(width, height) / 2;
+      var colors = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00",
+              "#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00",
+              "#98abc5", "#8a89a6", "#7b6888", "#6b486b"];
+      var arc = d3.arc()
+          .outerRadius(radius - 8)
+          .innerRadius(0)
+          .context(context);
+      var labelArc = d3.arc()
+          .outerRadius(radius - 40)
+          .innerRadius(radius - 40)
+          .context(context);
+      var pie = d3.pie()
+          .sort(null)
+          .value(function(d) { return d.base_happiness; });
+      context.translate(width / 2, height / 2);
+      d3.csv("https://raw.githubusercontent.com/feeblefruits/Pokemon/master/poke_challenge-master/pokemon_happiness.csv", function(d) {
+        d.base_happiness = +d.base_happiness;
+        return d;
+      }, function(error, data) {
+        if (error) throw error;
+        var arcs = pie(data);
+        context.beginPath();
+        arcs.forEach(arc);
+        context.strokeStyle = "#fff";
+        context.stroke();
+        context.textAlign = "right";
+        context.textBaseline = "middle";
+        context.fillStyle = "#000";
+        arcs.forEach(function(d, i) {
+          var c = labelArc.centroid(d);
+          context.fillText(d.data.type1, c[0], c[1]);
+             
+              rc.arc(0, 0, 2 * radius, 2 * radius, d.startAngle- Math.PI/2, d.endAngle- Math.PI/2, true, {
+                  stroke: colors[i],
+                  strokeWidth: 3,
+                  fill: colors[i]
+              });
+        });
+      });
+      </script>
+    </div>
+  </center>
+</body>
+</html>
