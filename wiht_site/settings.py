@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
         '0.0.0.0',
         '127.0.0.1',
+        'localhost',
         'https://powerful-river-58359.herokuapp.com',
         'powerful-river-58359.herokuapp.com'
     ]
@@ -142,16 +143,16 @@ MEDIA_ROOT = os.path.join(REPOSITORY_ROOT, 'media/')
 #STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 SITE_ID = 1
- 
+
 ####################################
     ##  CKEDITOR CONFIGURATION ##
 ####################################
- 
+
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
- 
+
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = "pillow"
- 
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': None,
