@@ -6,4 +6,5 @@ db.sqlite3
 db.sqlite3-journal
 
 node_modules/*
+howdy/node_modules/*
 ve/*
