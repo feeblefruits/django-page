@@ -7,7 +7,7 @@
     "@babel/polyfill": "^7.4.4",
     "jquery-parallax.js": "^1.5.0",
     "lodash": "^4.17.11",
-    "vue": "^2.6.10",
+    "vue": "^3.0.0",
     "vue-router": "^3.0.6"
   },
   "devDependencies": {
